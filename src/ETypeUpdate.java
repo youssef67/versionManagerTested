@@ -1,5 +1,5 @@
 public enum ETypeUpdate {
     PATCH,
     MINEUR,
-    MAJEUR
+    TEST, MAJEUR
 }
