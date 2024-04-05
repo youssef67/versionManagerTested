@@ -28,57 +28,50 @@ class VersionManagerTest {
     @Test
     @DisplayName("Test retour de la version en chaine de caractère")
     void testToString() {
-        assertEquals("Version: 1", instance.toString());
+        assertEquals(1, instance.getVersion());
     }
 
     @Test
     @DisplayName("Test pour une update MAJOR")
     void testMajorUpdate() {
         instance.updateVersion(ETypeUpdate.MAJEUR);
-        assertEquals("Version: 101", instance.toString());
+        assertEquals(101, instance.getVersion());
     }
 
     @Test
     @DisplayName("Test pour une update MINOR")
     void testMinorUpdate() {
         instance.updateVersion(ETypeUpdate.MINEUR);
-        assertEquals("Version: 11", instance.toString());
+        assertEquals(11, instance.getVersion());
     }
 
     @Test
     @DisplayName("Test pour une update PATCH")
     void testPatchUpdate() {
         instance.updateVersion(ETypeUpdate.PATCH);
-        assertEquals("Version: 2", instance.toString());
+        assertEquals(2, instance.getVersion());
     }
 
     @Test
     @DisplayName("Test pour une update sans parametre")
     void testNoParameterUpdate() {
         instance.updateVersion(ETypeUpdate.TEST);
-        assertEquals("Version: 1", instance.toString());
+        assertEquals(1, instance.getVersion());
     }
 
     @Test
-    @DisplayName("Test pour une version inferieur à 0")
-    void testSetVersionNegativeNUmber() {
+    @DisplayName("Test pour une version inferieur à 0 - egal à 0, supérieur à 0")
+    void testSetVersion() {
         instance.setVersion(-5);
-        assertEquals("Version: -5", instance.toString());
-    }
+        assertEquals(-5, instance.getVersion());
 
-    @Test
-    @DisplayName("Test pour une version inferieur à 0")
-    void testSetVersionEqualZero() {
         instance.setVersion(0);
-        assertEquals("Version: 0", instance.toString());
+        assertEquals(0, instance.getVersion());
+
+        instance.setVersion(11);
+        assertEquals(11, instance.getVersion());
     }
 
-    @Test
-    @DisplayName("Test pour une version inferieur à 0")
-    void testSetVersionPositiveNumber() {
-        instance.setVersion(11);
-        assertEquals("Version: 11", instance.toString());
-    }
 
     @Test
     @DisplayName("Test un enchainement d'update avec PATCH MINOR MAJOR")
@@ -87,7 +80,7 @@ class VersionManagerTest {
         instance.updateVersion(ETypeUpdate.MINEUR);
         instance.updateVersion(ETypeUpdate.MAJEUR);
 
-        assertEquals("Version: 112", instance.toString());
+        assertEquals(112, instance.getVersion());
     }
 
     @Test
@@ -97,7 +90,7 @@ class VersionManagerTest {
         instance.updateVersion(ETypeUpdate.MINEUR);
         instance.updateVersion(ETypeUpdate.PATCH);
 
-        assertEquals("Version: 112", instance.toString());
+        assertEquals(112, instance.getVersion());
     }
 
     @Test
@@ -107,7 +100,7 @@ class VersionManagerTest {
         instance.updateVersion(ETypeUpdate.MAJEUR);
         instance.updateVersion(ETypeUpdate.MAJEUR);
 
-        assertEquals("Version: 301", instance.toString());
+        assertEquals(301, instance.getVersion());
     }
 
     @Test
@@ -117,7 +110,7 @@ class VersionManagerTest {
         instance.setVersion(1);
         instance.updateVersion(ETypeUpdate.MAJEUR);
 
-        assertEquals("Version: 101", instance.toString());
+        assertEquals(101, instance.getVersion());
     }
 
 
